@@ -1,0 +1,34 @@
+apply plugin: 'groovy'
+apply plugin: 'maven'
+
+version = '1.0.0'
+group = 'com.zeus.gradle.plugin'
+archivesBaseName = 'patch-gradle-plugin'
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+
+dependencies {
+    compile gradleApi()
+    compile localGroovy()
+    compile 'com.android.tools.build:gradle:1.5.0'
+    compile 'org.ow2.asm:asm:5.0'
+
+}
+
+// 一定要记得使用交叉编译选项，因为我们可能用很高的JDK版本编译，为了让安装了低版本的同学能用上我们写的插件，必须设定source和target
+compileGroovy {
+    sourceCompatibility = 1.7
+    targetCompatibility = 1.7
+    options.encoding = "UTF-8"
+}
+
+uploadArchives {
+    repositories.mavenDeployer {
+        repository(url: 'file:release/libs')
+    }
+}
+
