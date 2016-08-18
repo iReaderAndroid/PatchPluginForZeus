@@ -26,3 +26,6 @@ patchPlugin{
     enable = true//如果enable为true则表明打出的包会在每个类的构造函数中注入代码
 }
 ```
+
+##鸣谢
+[NuwaGradle](https://github.com/jasonross/NuwaGradle)
